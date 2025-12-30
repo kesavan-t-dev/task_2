@@ -85,7 +85,7 @@ GO
 
 --drop the constraints and truncate table 
 ALTER TABLE task 
-DROP CONSTRAINT FK__task__project_id__382F5661
+DROP CONSTRAINT FK__task__project_id__4959E263
 GO
 
 
@@ -102,7 +102,7 @@ GO
 
 --Display the output:
 SELECT *
-FROM project,task;
+FROM project--,task;
 GO
 
 --Column name change
@@ -152,7 +152,10 @@ VALUES
 
 
 
-			--second type 1st TABLE(project) truncate and 2nd drop(task)
+			                --second type 1st TABLE(project) truncate and 2nd drop(task)
+
+
+
 Select * from project
 
 GO
@@ -240,19 +243,23 @@ VALUES
 
 
 
-			                        --third type DELETE TWO TABLE data
+			                             --third type DELETE TWO TABLE data
                                     
 
 select * from project;
 
 --DELETE TWO TABLE DATA FROM ALL ROWS
 
+--Drop project_description column
+ALTER TABLE project
+DROP COLUMN project_description
+
 --first delete child table
 DELETE 
 FROM task;
 GO
 -- Reset identity to start from 1
-DBCC CHECKIDENT ('task', RESEED, 1)
+DBCC CHECKIDENT ('task', RESEED, 0)
 
 --second parent table
 DELETE 
@@ -262,9 +269,6 @@ GO
 -- Reset identity to start from 1
 DBCC CHECKIDENT ('project', RESEED, 0);
 
---Drop project_description column
-ALTER TABLE project
-DROP COLUMN project_description
 
 --to check all the values are removed 
 SELECT * FROM project
