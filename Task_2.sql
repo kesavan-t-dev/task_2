@@ -77,22 +77,6 @@ GO
 		ALTER AND CONSTRAINTS 
 */
 
-
---now i try to truncate it shows 
-
--- TRUNCATE TABLE project if we use this it will show the below err
-/*
-Msg 4712, Level 16, State 1, Line 62
-Cannot truncate table 'project' because it is being referenced by a FOREIGN KEY constraint.
-
-so we need to approach this in three ways
-1. DELETE entire foreign key table 
-2. drop the constraints and remove the parent table and add it.
-3. disable the constraints and truncate it and enable it again  ❌ we use the third approach the delete two table data.✔️
-*/
-
-
-
 -- to check the foreign key id
 sp_help task
 GO
@@ -102,13 +86,6 @@ ALTER TABLE task
 DROP CONSTRAINT FK__task__project_id__01D345B0
 GO
 
-
-/*
---nocheck 
-ALTER TABLE task
-NOCHECK CONSTRAINT ALL;
---EXEC sp_fkeys 'task'
-*/
 
 --now we truncate the task,project table
 TRUNCATE TABLE task;
