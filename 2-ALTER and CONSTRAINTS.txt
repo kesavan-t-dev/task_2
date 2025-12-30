@@ -1,0 +1,6 @@
+Alter Table and Alter Column Scripts for rename columns and Constraints
+
+1. Add new column (Description) to the Project table with Not null Constraints 
+(Note: When inserting Not nullable new Columns Table shouldn't have any data ).
+2. Rename Column name as ProjectDescription.
+3. Alter Constraints of description to  Null.
